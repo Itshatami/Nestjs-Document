@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Ip,
   Param,
@@ -14,6 +15,8 @@ import {
 import { Request, Response } from "express";
 import { CreateCatDto } from "./dto/create-cat.dto";
 import { CatsService } from "./cats.service";
+import { error } from "console";
+import { UnkownException } from "src/exceptions/unkown.exception";
 
 @Controller("cats")
 export class CatsController {
@@ -21,8 +24,10 @@ export class CatsController {
 
   @Get()
   async findAll(@Res() res: Response) {
-    const cats = await this.catService.findAll();
-    return res.status(HttpStatus.OK).json(cats);
+    // const cats = await this.catService.findAll();
+    // return res.status(HttpStatus.OK).json(cats);
+
+    throw new UnkownException();
   }
 
   @Get("/:id")
